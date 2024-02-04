@@ -1,38 +1,261 @@
-[gd_scene load_steps=4 format=3 uid="uid://bx42qb1l1jh4q"]
+[gd_scene load_steps=5 format=3 uid="uid://bx42qb1l1jh4q"]
 
+[ext_resource type="Script" path="res://survivors_game.gd" id="1_nayrw"]
 [ext_resource type="PackedScene" uid="uid://sbrfuii3jh1d" path="res://characters/player.tscn" id="1_qti8j"]
 [ext_resource type="PackedScene" uid="uid://744m1f8r7ec5" path="res://trees/pine_tree.tscn" id="2_2tx30"]
-[ext_resource type="PackedScene" uid="uid://ctbqa4euu7w1i" path="res://characters/mob.tscn" id="3_kmrkt"]
+
+[sub_resource type="Curve2D" id="Curve2D_k5uua"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -128, 95, 0, 0, 0, 0, 2117, 92, 0, 0, 0, 0, 2120, 1384, 0, 0, 0, 0, -134, 1387, 0, 0, 0, 0, -128, 95)
+}
+point_count = 5
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_nayrw")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -1.0
-offset_right = 1913.0
-offset_bottom = 1102.0
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -20
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0.592157, 0.803922, 0.407843, 1)
 
 [node name="Player" parent="." instance=ExtResource("1_qti8j")]
 position = Vector2(1015, 720)
 
-[node name="PineTree" parent="." instance=ExtResource("2_2tx30")]
+[node name="Path2D" type="Path2D" parent="Player"]
+position = Vector2(-1015, -720)
+curve = SubResource("Curve2D_k5uua")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Player/Path2D"]
+unique_name_in_owner = true
+position = Vector2(-128, 95)
+rotation = -0.0013363
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="GameOver" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="GameOver"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.337255)
+
+[node name="Label" type="Label" parent="GameOver/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -396.5
+offset_top = -103.5
+offset_right = 396.5
+offset_bottom = 103.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 151
+text = "Game over"
+horizontal_alignment = 1
+
+[node name="Trees" type="Node2D" parent="."]
+
+[node name="PineTree" parent="Trees" instance=ExtResource("2_2tx30")]
 position = Vector2(387, 679)
 
-[node name="PineTree2" parent="." instance=ExtResource("2_2tx30")]
+[node name="PineTree2" parent="Trees" instance=ExtResource("2_2tx30")]
 position = Vector2(749, 417)
 
-[node name="PineTree3" parent="." instance=ExtResource("2_2tx30")]
+[node name="PineTree3" parent="Trees" instance=ExtResource("2_2tx30")]
 position = Vector2(789, 1028)
 
-[node name="PineTree4" parent="." instance=ExtResource("2_2tx30")]
+[node name="PineTree4" parent="Trees" instance=ExtResource("2_2tx30")]
 position = Vector2(1416, 458)
 
-[node name="PineTree5" parent="." instance=ExtResource("2_2tx30")]
+[node name="PineTree5" parent="Trees" instance=ExtResource("2_2tx30")]
 position = Vector2(1292, 843)
 
-[node name="Mob" parent="." instance=ExtResource("3_kmrkt")]
-position = Vector2(683, 548)
+[node name="PineTree6" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(1381, 891)
 
-[node name="Mob2" parent="." instance=ExtResource("3_kmrkt")]
-position = Vector2(515, 897)
+[node name="PineTree7" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(1430, 796)
+
+[node name="PineTree8" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(2279, 1010)
+
+[node name="PineTree9" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(1657, 1257)
+
+[node name="PineTree10" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(738, 1438)
+
+[node name="PineTree11" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(266, 1157)
+
+[node name="PineTree12" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(180, 1239)
+
+[node name="PineTree13" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(313, 1291)
+
+[node name="PineTree14" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(350, 1208)
+
+[node name="PineTree15" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(312, 748)
+
+[node name="PineTree16" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(417, 307)
+
+[node name="PineTree17" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(28, 93)
+
+[node name="PineTree18" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(-119, 97)
+
+[node name="PineTree19" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(-48, -22)
+
+[node name="PineTree20" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(79, -59)
+
+[node name="PineTree21" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(194, -106)
+
+[node name="PineTree22" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(963, 62)
+
+[node name="PineTree23" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(867, 93)
+
+[node name="PineTree24" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(733, -241)
+
+[node name="PineTree25" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(1314, -125)
+
+[node name="PineTree26" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(1692, -276)
+
+[node name="PineTree27" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(1626, -396)
+
+[node name="PineTree28" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(1830, -457)
+
+[node name="PineTree29" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(1752, -358)
+
+[node name="PineTree30" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(1055, -465)
+
+[node name="PineTree31" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(2029, -109)
+
+[node name="PineTree32" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(1711, 42)
+
+[node name="PineTree33" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(1898, 161)
+
+[node name="PineTree34" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(2206, -375)
+
+[node name="PineTree35" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(2516, 80)
+
+[node name="PineTree36" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(2269, 360)
+
+[node name="PineTree37" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(1976, 574)
+
+[node name="PineTree38" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(2802, 717)
+
+[node name="PineTree39" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(3133, 239)
+
+[node name="PineTree40" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(2813, 1407)
+
+[node name="PineTree41" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(2053, 1619)
+
+[node name="PineTree42" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(1265, 1899)
+
+[node name="PineTree43" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(817, 1547)
+
+[node name="PineTree44" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(889, 1455)
+
+[node name="PineTree45" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(401, 1647)
+
+[node name="PineTree46" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(-143, 1663)
+
+[node name="PineTree47" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(-391, 1303)
+
+[node name="PineTree48" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(-343, 1219)
+
+[node name="PineTree49" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(-487, 1135)
+
+[node name="PineTree50" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(-331, 803)
+
+[node name="PineTree51" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(-487, 607)
+
+[node name="PineTree52" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(-695, 67)
+
+[node name="PineTree53" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(-911, 691)
+
+[node name="PineTree54" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(-891, 1491)
+
+[node name="PineTree55" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(-211, 2139)
+
+[node name="PineTree56" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(669, 2303)
+
+[node name="PineTree57" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(-239, -337)
+
+[node name="PineTree58" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(357, -653)
+
+[node name="PineTree59" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(825, -781)
+
+[node name="PineTree60" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(937, -813)
+
+[node name="PineTree61" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(829, -941)
+
+[node name="PineTree62" parent="Trees" instance=ExtResource("2_2tx30")]
+position = Vector2(1629, -833)
+
+[connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,10 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://sbrfuii3jh1d"]
+[gd_scene load_steps=8 format=3 uid="uid://sbrfuii3jh1d"]
 
 [ext_resource type="PackedScene" uid="uid://pbmyh1qru7p" path="res://characters/happy_boo/happy_boo.tscn" id="1_l6m58"]
 [ext_resource type="Script" path="res://characters/player.gd" id="1_qenj3"]
+[ext_resource type="PackedScene" uid="uid://crosyky2jesis" path="res://gun.tscn" id="3_s0jh5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fsi70"]
+radius = 38.0526
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t8ljw"]
 radius = 32.0156
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1np38"]
+bg_color = Color(0.152941, 0.168627, 0.188235, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8tmd2"]
+bg_color = Color(0.388235, 0.8, 0.372549, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_qenj3")
@@ -12,7 +30,30 @@ script = ExtResource("1_qenj3")
 [node name="HappyBoo" parent="." instance=ExtResource("1_l6m58")]
 unique_name_in_owner = true
 
+[node name="HurtBox" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CircleShape2D_fsi70")
+debug_color = Color(0.788235, 0.427451, 0.0901961, 0.419608)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_t8ljw")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Gun" parent="." instance=ExtResource("3_s0jh5")]
+position = Vector2(0, -47)
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = -107.0
+offset_top = -148.0
+offset_right = 111.0
+offset_bottom = -121.0
+theme_override_styles/background = SubResource("StyleBoxFlat_1np38")
+theme_override_styles/fill = SubResource("StyleBoxFlat_8tmd2")
+value = 100.0
+show_percentage = false
